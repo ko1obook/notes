@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Заметки</title>
+    <meta charset="UTF-8">
+    <!-- Подключение Bootstrap для базового оформления -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container">
+    <h1 class="mt-4">Список заметок</h1>
+
+    <!-- Форма для поиска -->
+    <form action="#" th:action="@{/notes/search}" method="get">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Поиск по содержимому" name="keyword" th:value="${keyword}">
+            <button class="btn btn-primary" type="submit">Поиск</button>
+        </div>
+    </form>
+
+    <a href="/notes/new" class="btn btn-primary mb-3">Новая заметка</a>
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Текст</th>
+            <th>Действия</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="note : ${notes}">
+            <td th:text="${note.id}">1</td>
+            <td th:text="${note.text}">Текст заметки</td>
+            <td>
+                <a th:href="@{'/notes/edit/' + ${note.id}}" class="btn btn-sm btn-secondary">Редактировать</a>
+                <a th:href="@{'/notes/delete/' + ${note.id}}" class="btn btn-sm btn-danger"
+                   onclick="return confirm('Удалить эту заметку?');">Удалить</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+</body>
+</html>
