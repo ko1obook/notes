@@ -7,25 +7,35 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Controller
+@RequestMapping("/notes")  // Это поможет избежать конфликтов между методами
 public class NoteController {
 
     @Autowired
     private NoteService noteService;
 
     /**
-     * Отображение главной страницы со списком заметок.
+     * Отображение списка заметок или поиск по ключевому слову.
      */
-    @GetMapping("/")
-    public String index(Model model) {
-        model.addAttribute("notes", noteService.getAllNotes());
-        return "index";
+    @GetMapping
+    public String getNotes(Model model, @RequestParam(required = false) String keyword) {
+        List<Note> notes;
+        if (keyword != null && !keyword.isEmpty()) {
+            notes = noteService.searchNotes(keyword);  // Если ключевое слово передано, ищем заметки
+        } else {
+            notes = noteService.getAllNotes();  // В противном случае показываем все заметки
+        }
+        model.addAttribute("notes", notes);
+        model.addAttribute("keyword", keyword);  // Сохраняем значение поиска для отображения в форме
+        return "index";  // имя вашего шаблона
     }
 
     /**
      * Страница для создания новой заметки.
      */
-    @GetMapping("/notes/new")
+    @GetMapping("/new")
     public String newNote(Model model) {
         model.addAttribute("note", new Note());
         return "edit";
@@ -34,20 +44,20 @@ public class NoteController {
     /**
      * Сохранение заметки (создание или редактирование).
      */
-    @PostMapping("/notes")
+    @PostMapping
     public String saveNote(@ModelAttribute Note note) {
         noteService.saveNote(note);
-        return "redirect:/";
+        return "redirect:/notes";  // После сохранения редирект на страницу списка
     }
 
     /**
      * Страница редактирования существующей заметки.
      */
-    @GetMapping("/notes/edit/{id}")
+    @GetMapping("/edit/{id}")
     public String editNote(@PathVariable Long id, Model model) {
         Note note = noteService.getNoteById(id);
         if (note == null) {
-            return "redirect:/";
+            return "redirect:/notes";  // Если заметки нет, перенаправляем на список
         }
         model.addAttribute("note", note);
         return "edit";
@@ -56,9 +66,9 @@ public class NoteController {
     /**
      * Удаление заметки по идентификатору.
      */
-    @GetMapping("/notes/delete/{id}")
+    @GetMapping("/delete/{id}")
     public String deleteNote(@PathVariable Long id) {
         noteService.deleteNoteById(id);
-        return "redirect:/";
+        return "redirect:/notes";  // После удаления редирект на список
     }
 }

@@ -11,7 +11,7 @@
     <h1 class="mt-4">Список заметок</h1>
 
     <!-- Форма для поиска -->
-    <form action="#" th:action="@{/notes/search}" method="get">
+    <form action="#" th:action="@{/notes}" method="get">
         <div class="input-group mb-3">
             <input type="text" class="form-control" placeholder="Поиск по содержимому" name="keyword" th:value="${keyword}">
             <button class="btn btn-primary" type="submit">Поиск</button>
