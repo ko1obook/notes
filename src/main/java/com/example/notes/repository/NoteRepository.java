@@ -10,5 +10,5 @@ import java.util.List;
 public interface NoteRepository extends CrudRepository<Note, Long> {
 
     // Метод для поиска заметок по содержимому (например, по ключевому слову)
-    List<Note> findByTextContaining(String keyword);
+    List<Note> findByTextHtmlContaining(String keyword);
 }

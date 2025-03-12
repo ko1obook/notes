@@ -24,7 +24,7 @@ public class NoteService {
      * Метод для поиска по ключевому слову
      */
     public List<Note> searchNotes(String keyword) {
-        return noteRepository.findByTextContaining(keyword);
+        return noteRepository.findByTextHtmlContaining(keyword);
     }
 
     /**

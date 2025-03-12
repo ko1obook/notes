@@ -25,16 +25,16 @@
         <div class="mb-3">
             <label for="editor-container" class="form-label">Текст заметки</label>
             <div id="editor-container"></div>
-            <input type="hidden" name="text" id="hidden-text">
+            <input type="hidden" name="textHtml" id="hidden-text">
         </div>
 
         <button type="submit" class="btn btn-primary">Сохранить</button>
-        <a href="/" class="btn btn-secondary">Отмена</a>
+        <a href="/notes" class="btn btn-secondary">Отмена</a>
     </form>
 </div>
 
 <!-- Скрытый div, в который Thymeleaf вставит HTML-код заметки -->
-<div id="note-content" th:utext="${note.text}" style="display: none;"></div>
+<div id="note-content" th:utext="${note.textHtml}" style="display: none;"></div>
 
 <script>
     // Инициализация Quill.js

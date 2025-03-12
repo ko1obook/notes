@@ -26,7 +26,7 @@ public class NotesApplication {
         return args -> {
             if (noteService.getAllNotes().isEmpty()) {
                 Note defaultNote = new Note();
-                defaultNote.setText("Добро пожаловать! Это ваша первая заметка.");
+                defaultNote.setTextHtml("Добро пожаловать! Это ваша первая заметка.");
                 noteService.saveNote(defaultNote);
             }
         };

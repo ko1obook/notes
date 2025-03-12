@@ -18,9 +18,9 @@ public class Note {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    // Хранение полного текста заметки
+    @Lob
     @Column(columnDefinition = "TEXT")
-    private String text;
+    private String textHtml;
 
     @CreationTimestamp
     private LocalDateTime createdAt;
