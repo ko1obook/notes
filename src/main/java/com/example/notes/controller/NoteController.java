@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @Controller
-@RequestMapping("/notes")  // Это поможет избежать конфликтов между методами
+@RequestMapping("/notes")
 public class NoteController {
 
     @Autowired

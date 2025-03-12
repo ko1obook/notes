@@ -24,6 +24,7 @@
         <tr>
             <th>ID</th>
             <th>Текст</th>
+            <th>Последнее изменение</th>
             <th>Действия</th>
         </tr>
         </thead>
@@ -31,6 +32,7 @@
         <tr th:each="note : ${notes}">
             <td th:text="${note.id}">1</td>
             <td th:text="${note.text}">Текст заметки</td>
+            <td th:text="${note.updatedAt != null && note.updatedAt != note.createdAt ? #temporals.format(note.updatedAt, 'dd-MM-yyyy HH:mm:ss') : #temporals.format(note.createdAt, 'dd-MM-yyyy HH:mm:ss')}">Дата</td>
             <td>
                 <a th:href="@{'/notes/edit/' + ${note.id}}" class="btn btn-sm btn-secondary">Редактировать</a>
                 <a th:href="@{'/notes/delete/' + ${note.id}}" class="btn btn-sm btn-danger"
