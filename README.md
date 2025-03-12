@@ -24,11 +24,11 @@ Notes Application — веб-приложение для создания, хр�
 - Создание первой заметки при запуске преложения
 
 ## 3. Стек технологий
-- Java 17
-- Spring Boot 3.9.0 (Web, Data JPA, Thymeleaf, Lombok)
-- Hibernate (с аннотациями @CreationTimestamp и @UpdateTimestamp)
-- H2 Database (по умолчанию)
-- Bootstrap 5 (для UI)
+- **Java 17**
+- **Spring Boot 3.9.0 (Web, Data JPA, Thymeleaf, Lombok)**
+- **Hibernate** (с аннотациями @CreationTimestamp и @UpdateTimestamp)
+- **H2 Database** (по умолчанию)
+- **Bootstrap 5** (для UI)
 
 ## 4. Установка и запуск
 ### Клонирование репозитория
