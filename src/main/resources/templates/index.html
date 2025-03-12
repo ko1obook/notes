@@ -5,6 +5,8 @@
     <meta charset="UTF-8">
     <!-- Подключение Bootstrap для базового оформления -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css">
+    <!-- Подключение стилей Quill -->
+    <link href="https://cdn.quilljs.com/1.3.6/quill.snow.css" rel="stylesheet">
 </head>
 <body>
 <div class="container">
@@ -31,7 +33,9 @@
         <tbody>
         <tr th:each="note : ${notes}">
             <td th:text="${note.id}">1</td>
-            <td th:text="${note.text}">Текст заметки</td>
+            <td>
+                <div style="max-height: 50px; overflow: hidden;" th:utext="${note.text}">Текст заметки</div>
+            </td>
             <td th:text="${note.updatedAt != null && note.updatedAt != note.createdAt ? #temporals.format(note.updatedAt, 'dd-MM-yyyy HH:mm:ss') : #temporals.format(note.createdAt, 'dd-MM-yyyy HH:mm:ss')}">Дата</td>
             <td>
                 <a th:href="@{'/notes/edit/' + ${note.id}}" class="btn btn-sm btn-secondary">Редактировать</a>
@@ -42,5 +46,9 @@
         </tbody>
     </table>
 </div>
+
+<!-- Подключение Quill.js -->
+<script src="https://cdn.quilljs.com/1.3.6/quill.min.js"></script>
+
 </body>
 </html>
