@@ -1,5 +1,6 @@
 package com.example.notes.service;
 
+import com.example.notes.annotation.Loggable;
 import com.example.notes.model.Note;
 import com.example.notes.repository.NoteRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +24,7 @@ public class NoteService {
     /**
      * Метод для поиска по ключевому слову
      */
+    @Loggable
     public List<Note> searchNotes(String keyword) {
         return noteRepository.findByTextHtmlContaining(keyword);
     }
@@ -30,6 +32,7 @@ public class NoteService {
     /**
      * Получить заметку по идентификатору.
      */
+    @Loggable
     public Note getNoteById(Long id) {
         return noteRepository.findById(id).orElse(null);
     }
@@ -37,6 +40,7 @@ public class NoteService {
     /**
      * Сохранить заметку (новую или обновленную).
      */
+    @Loggable
     public Note saveNote(Note note) {
         return noteRepository.save(note);
     }
@@ -44,6 +48,7 @@ public class NoteService {
     /**
      * Удалить заметку по идентификатору.
      */
+    @Loggable
     public void deleteNoteById(Long id) {
         noteRepository.deleteById(id);
     }
